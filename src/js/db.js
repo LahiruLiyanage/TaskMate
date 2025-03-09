@@ -42,3 +42,15 @@ export async function addDbTask(description, status = false) {
         console.log(e);
     }
 }
+
+export async function deleteDbTask(taskId) {
+    try {
+        taskId = taskId.replace('task-', '');
+        const docRef = doc(db, `/task/${taskId}`);
+        await deleteDoc(docRef);
+        return true;
+    } catch (e) {
+        console.log(e);
+        return false;
+    }
+}

@@ -72,3 +72,40 @@ $("#frm-task").on('submit', async () => {
         .val("")
         .trigger('focus');
 });
+
+$('#task-list > section, #completed-task-list > section')
+    .on('change', '.task-item input[type="checkbox"]', async (e) => {
+        const task = taskList.find(task => task.id === e.currentTarget.id);
+
+        if (await updateDbTaskStatus(task.id, task.description, !task.status)) {
+            task.status = !task.status;
+            renderTasks();
+        }
+    })
+    .on('click', '.bi-trash', async (e) => {
+        const taskId = $(e.currentTarget)
+            .parents(".task-item")
+            .find('input[type="checkbox"]')
+            .prop("id");
+        const taskIndex = taskList.findIndex(task => task.id === taskId);
+
+        if (await deleteDbTask(taskId)) {
+            taskList.splice(taskIndex, 1);
+            renderTasks();
+        }
+    })
+    .on('click', '.bi-pencil', (e) => {
+        $(".task-item-selected").removeClass('task-item-selected');
+
+        const taskId = $(e.currentTarget)
+            .parents(".task-item")
+            .addClass('task-item-selected')
+            .find('input[type="checkbox"]').prop("id");
+        currentTask = taskList.find(task => task.id === taskId);
+
+        $("#txt-task")
+            .val(currentTask.description)
+            .trigger('focus')
+            .trigger('select');
+        $("#frm-task button").text("Update");
+    });
