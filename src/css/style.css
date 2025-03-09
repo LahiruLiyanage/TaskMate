@@ -11,3 +11,33 @@ body {
         margin: auto;
     }
 }
+
+#completed-task-list .task-item label {
+    text-decoration: line-through;
+}
+
+.task-item {
+    label, i, input {
+        cursor: pointer;
+    }
+}
+
+.task-item-selected {
+    outline: 1px solid lightgray;
+}
+
+.task-item:hover i.bi-pencil {
+    display: inline;
+}
+
+.task-item i.bi-pencil {
+    display: none;
+}
+
+.task-item i.bi-pencil:hover {
+    color: green;
+}
+
+.task-item i.bi-trash:hover {
+    color: red;
+}
