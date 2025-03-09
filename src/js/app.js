@@ -6,7 +6,10 @@ let currentTask = null;         /* Store the currently selected task reference *
 let taskList = [];              /* Store the task list of currently authenticated user */
 
 export async function initializeApp() {
+    taskList = await loadDbTasks();
     renderTasks();
+    $("#loader-wrapper").addClass("d-none");
+    $("#task-lists-wrapper").removeClass("d-none");
 }
 
 function renderTasks() {
@@ -44,4 +47,28 @@ $('#chk-mode').on('change', function() {
     const darkMode = $(this).prop('checked');
 
     $('html').attr('data-bs-theme', darkMode ? 'dark' : 'light');
+});
+
+$("#frm-task").on('submit', async () => {
+    const txtTask = $("#txt-task");
+    const description = txtTask.val().trim();
+
+    /* Adding or Updating? */
+    if (!currentTask) {
+        const taskId = await addDbTask(description);
+
+        if (taskId) taskList.push(new Task(taskId, description));
+    } else {
+        if (await updateDbTaskStatus(currentTask.id,
+            txtTask.val().trim(), currentTask.status)) {
+            currentTask.description = description;
+            currentTask = null;
+            $("#frm-task button").text('Add');
+        }
+    }
+
+    renderTasks();
+    txtTask
+        .val("")
+        .trigger('focus');
 });
