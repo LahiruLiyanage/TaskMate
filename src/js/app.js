@@ -1,4 +1,9 @@
 import $ from 'jquery';
+import {Task} from "./task.js";
+import {addDbTask, deleteDbTask, loadDbTasks, updateDbTaskStatus} from "./db.js";
+
+let currentTask = null;         /* Store the currently selected task reference */
+let taskList = [];              /* Store the task list of currently authenticated user */
 
 export async function initializeApp() {
     renderTasks();
