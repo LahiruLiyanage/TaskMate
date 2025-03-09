@@ -8,7 +8,7 @@
         <script type="module" src="./src/js/main.js"></script>
     </head>
     <body>
-        <section id="app">
+        <section id="app" class="d-none">
             <header class="d-flex justify-content-between p-2">
                 <h2 class="d-flex align-items-center gap-1 m-0">
                     <i class="bi bi-card-checklist text-primary px-1 fs-1"></i>
@@ -18,6 +18,7 @@
                     <div id="mode-wrapper" class="d-flex gap-2 fs-5 align-items-center">
                         <i class="bi bi-brightness-high"></i>
                         <div class="form-check form-switch m-0">
+                            <label for="chk-mode"></label>
                             <input id="chk-mode" class="form-check-input" type="checkbox" role="switch">
                             <i class="bi bi-moon-fill"></i>
                         </div>
@@ -31,6 +32,7 @@
                 <section class="p-2">
                     <form id="frm-task" action="javascript:void(0)">
                         <div class="d-flex gap-2">
+                            <label for="txt-task"></label>
                             <input id="txt-task" class="form-control" type="text"
                                    required pattern=".*\S+.*"
                                    placeholder="Eg. Improve UX in Login Screen">
@@ -73,5 +75,24 @@
                 </div>
             </main>
         </section>
+        <section id="login" class="vh-100 d-none d-flex justify-content-center align-items-center">
+            <main class="border text-center p-5">
+                <header class="<!--d-flex--> <!--justify-content-center-->">
+                    <h2 class="m-0 d-flex align-items-center gap-1">
+                        <i class="bi bi-card-checklist text-primary px-1 fs-1"></i>
+                        Task Mate ✔
+                    </h2>
+                    <p class="mt-4">Please sign in to continue</p>
+                    <button id="btn-sign-in-google" class="btn btn-primary">
+                        <i class="bi bi-google me-2"></i>
+                        Sign in with Google
+                    </button>
+                    <footer class="border-top mt-4 pt-2 small">
+                        Copyright &copy; 2025 - Lahiru Liyanage -
+                    </footer>
+                </header>
+            </main>
+        </section>
+
     </body>
 </html>
