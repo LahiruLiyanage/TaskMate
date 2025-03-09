@@ -41,3 +41,40 @@ body {
 .task-item i.bi-trash:hover {
     color: red;
 }
+
+:is(html, html[data-bs-theme="light"]) .task-item:hover {
+    background-color: lightgray;
+}
+
+html[data-bs-theme="dark"] .task-item:hover {
+    background-color: #494949;
+}
+
+#loader-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+
+    /* HTML: <div class="loader"></div> */
+    .loader {
+        width: 120px;
+        height: 22px;
+        border-radius: 20px;
+        color: #888da3;
+        border: 2px solid;
+        position: relative;
+    }
+    .loader::before {
+        content: "";
+        position: absolute;
+        margin: 2px;
+        inset: 0 100% 0 0;
+        border-radius: inherit;
+        background: currentColor;
+        animation: l6 2s infinite;
+    }
+}
+
+@keyframes l6 {
+    100% {inset:0}
+}
