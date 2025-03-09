@@ -54,3 +54,18 @@ export async function deleteDbTask(taskId) {
         return false;
     }
 }
+
+export async function updateDbTaskStatus(taskId, description, status) {
+    try {
+        taskId = taskId.replace('task-', '');
+        const docRef = doc(db, `/task/${taskId}`);
+        await updateDoc(docRef, {
+            description,
+            status
+        });
+        return true;
+    } catch (e) {
+        console.log(e);
+        return false;
+    }
+}
