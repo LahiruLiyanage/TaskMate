@@ -6,5 +6,8 @@
 body {
     font-family: 'Ubuntu', sans-serif;
 
-
+    #app {
+        max-width: 700px;
+        margin: auto;
+    }
 }
