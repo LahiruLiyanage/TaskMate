@@ -27,3 +27,18 @@ export async function loadDbTasks() {
     });
     return taskList;
 }
+
+export async function addDbTask(description, status = false) {
+    try {
+        const collectionRef = collection(db, "/task");
+        const docRef = await addDoc(collectionRef, {
+            description,
+            status,
+            createdAt: serverTimestamp(),
+            user: securityContext.loggedUser
+        });
+        return docRef.id;
+    } catch (e) {
+        console.log(e);
+    }
+}
