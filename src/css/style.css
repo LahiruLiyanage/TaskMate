@@ -10,6 +10,46 @@ body {
         max-width: 700px;
         margin: auto;
     }
+
+    @media (width >= 700px) {
+        #app {
+            border-right: 1px solid gray;
+            border-left: 1px solid gray;
+            min-height: 100vh;
+        }
+    }
+
+    @media (width <= 425px) {
+        #app {
+            header h2 {
+                font-size: 1.1rem;
+            }
+
+            #mode-wrapper {
+                font-size: 1rem !important;
+            }
+        }
+
+        #login {
+            margin: 2px;
+        }
+    }
+
+    @media (width <= 360px) {
+        #app {
+            header h2 {
+                font-size: 1rem;
+            }
+        }
+    }
+
+    @media (width <= 330px) {
+        #app {
+            #mode-wrapper {
+                display: none !important;
+            }
+        }
+    }
 }
 
 #completed-task-list .task-item label {
